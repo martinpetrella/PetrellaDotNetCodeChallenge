@@ -48,6 +48,18 @@
     "firstName": "George",
     "lastName": "Harrison",
     "position": "Developer III",
-    "department": "Engineering"
+    "department": "Engineering",
+    "directReports": [
+      {
+        "employeeId": "abcd084e-6e34-4630-93fd-9153afb65309"
+      }
+    ]
+  },
+  {
+    "employeeId": "abcd084e-6e34-4630-93fd-9153afb65309",
+    "firstName": "Marty",
+    "lastName": "Petrella",
+    "position": "Party Animal",
+    "department": "Entertainment"
   }
 ]

@@ -31,9 +31,18 @@ namespace CodeChallenge.Services
         {
             if(compensation != null)
             {
-                compensation.employee = GetById(compensation.employee.EmployeeId);
-                _employeeRepository.Add(compensation);
-                _employeeRepository.SaveAsync().Wait();
+                Employee employee = GetById(compensation.employee.EmployeeId);
+
+                if (employee == null)
+                {
+                    compensation = null;
+                }
+                else
+                {
+                    compensation.employee = GetById(compensation.employee.EmployeeId);
+                    _employeeRepository.Add(compensation);
+                    _employeeRepository.SaveAsync().Wait();
+                }
             }
 
             return compensation;
