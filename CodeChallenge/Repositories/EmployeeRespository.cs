@@ -47,7 +47,11 @@ namespace CodeChallenge.Repositories
 
             // Similar to GetById(), the query above always returns Compoensation.employee as null
             // This sets employee to a valid value.
-            result.employee = _employeeContext.Employees.ToList().SingleOrDefault(e => e.EmployeeId == id);
+            if (result != null)
+            {
+                result.employee = _employeeContext.Employees.ToList().SingleOrDefault(e => e.EmployeeId == id);
+            }
+
             return result;
         }
 
