@@ -10,17 +10,9 @@ namespace CodeChallenge.Models
         {
             int result = 0;
 
-            if (employee == null)
+            if (employee != null)
             {
-                throw new ArgumentNullException();
-            }
-            else
-            {
-                if (employee.DirectReports == null)
-                {
-                    result = 0;
-                }
-                else
+                if (employee.DirectReports != null)
                 {
                     employee.DirectReports.ForEach(e =>
                     {
