@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using CodeChallenge.Models;
-using Microsoft.Extensions.Logging;
+﻿using CodeChallenge.Models;
 using CodeChallenge.Repositories;
+using Microsoft.Extensions.Logging;
+using System;
 
 namespace CodeChallenge.Services
 {
-    public class EmployeeService : IEmployeeService
+    public class EmployeeService : IEmployeeService2
     {
-        private readonly IEmployeeRepository _employeeRepository;
+        private readonly IEmployeeRepository2 _employeeRepository;
         private readonly ILogger<EmployeeService> _logger;
 
-        public EmployeeService(ILogger<EmployeeService> logger, IEmployeeRepository employeeRepository)
+        public EmployeeService(ILogger<EmployeeService> logger, IEmployeeRepository2 employeeRepository)
         {
             _employeeRepository = employeeRepository;
             _logger = logger;
@@ -30,6 +27,18 @@ namespace CodeChallenge.Services
             return employee;
         }
 
+        public Compensation CreateCompensation(Compensation compensation)
+        {
+            if(compensation != null)
+            {
+                compensation.employee = GetById(compensation.employee.EmployeeId);
+                _employeeRepository.Add(compensation);
+                _employeeRepository.SaveAsync().Wait();
+            }
+
+            return compensation;
+        }
+
         public Employee GetById(string id)
         {
             if(!String.IsNullOrEmpty(id))
@@ -38,6 +47,16 @@ namespace CodeChallenge.Services
             }
 
             return null;
+        }
+
+        public Compensation GetCompensationByID(string id)
+        {
+            return _employeeRepository.GetCompensationById(id);
+        }
+
+        public ReportingStructure GetReportingStructureById(string id)
+        {
+            return new ReportingStructure() { employee = GetById(id) };
         }
 
         public Employee Replace(Employee originalEmployee, Employee newEmployee)
