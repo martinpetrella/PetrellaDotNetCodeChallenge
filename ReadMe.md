@@ -1,4 +1,4 @@
-# Mindex Coding Challenge
+# Mindex Coding Challenge - Marty Petrella's solution
 ## What's Provided
 A simple [.Net 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) web application has been created and bootstrapped 
 with data. The application contains information about all employees at a company. On application start-up, an in-memory 
@@ -10,22 +10,39 @@ You can run this by executing `dotnet run` on the command line or in [Visual Stu
 
 
 ### How to Use
-The following endpoints are available to use:
+The following endpoints are available to use (including new endpoints created for Task 1 and Task 2:
 ```
-* CREATE
+* CREATE Employee
     * HTTP Method: POST 
     * URL: localhost:8080/api/employee
     * PAYLOAD: Employee
     * RESPONSE: Employee
-* READ
+* READ Employee
     * HTTP Method: GET 
     * URL: localhost:8080/api/employee/{id}
     * RESPONSE: Employee
-* UPDATE
+* UPDATE Employee
     * HTTP Method: PUT 
     * URL: localhost:8080/api/employee/{id}
     * PAYLOAD: Employee
     * RESPONSE: Employee
+
+* READ ReportingStructure
+	* HTTP Method: GET
+	* URL: localhost:8080/api/employee/reportingStructure/{id}
+	* RESPONSE: ReportingStructure
+
+* CREATE Compensation
+    * HTTP Method: POST 
+    * URL: localhost:8080/api/employee/compensation
+    * PAYLOAD: Employee (only EmployeeId required)
+    * RESPONSE: Compensation
+	
+* READ Compensation
+	* HTTP Method: GET
+	* URL: localhost:8080/api/employee/compensation/{id}
+	* RESPONSE: Compensation
+
 ```
 The Employee has a JSON schema of:
 ```json
